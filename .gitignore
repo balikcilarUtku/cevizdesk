@@ -49,4 +49,4 @@ lib/generated_bridge.dart
 .ssh
 .devcontainer/.*
 # build cache in examples
-examples/**/target/
+examples/**/target/flutter/dart.zip
