@@ -107,13 +107,13 @@ class PlatformFFI {
   Future<void> init(String appType) async {
     _appType = appType;
     final dylib = Platform.isAndroid
-        ? DynamicLibrary.open('librustdesk.so')
+        ? DynamicLibrary.open('libcevizdesk.so')
         : Platform.isLinux
-            ? DynamicLibrary.open('librustdesk.so')
+            ? DynamicLibrary.open('libcevizdesk.so')
             : Platform.isWindows
-                ? DynamicLibrary.open('librustdesk.dll')
+                ? DynamicLibrary.open('libcevizdesk.dll')
                 : Platform.isMacOS
-                    ? DynamicLibrary.open("liblibrustdesk.dylib")
+                    ? DynamicLibrary.open("liblibcevizdesk.dylib")
                     : DynamicLibrary.process();
     debugPrint('initializing FFI $_appType');
     try {
@@ -216,10 +216,10 @@ class PlatformFFI {
   }
 
   /// Start listening to the Rust core's events and frames.
-  void _startListenEvent(RustdeskImpl rustdeskImpl) {
+  void _startListenEvent(RustdeskImpl cevizdeskImpl) {
     final appType =
         _appType == kAppTypeDesktopRemote ? '$_appType,$kWindowId' : _appType;
-    var sink = rustdeskImpl.startGlobalEventStream(appType: appType);
+    var sink = cevizdeskImpl.startGlobalEventStream(appType: appType);
     sink.listen((message) {
       () async {
         try {

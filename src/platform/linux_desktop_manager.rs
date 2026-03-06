@@ -680,9 +680,9 @@ impl DesktopManager {
                 "+extension",
                 "RENDER",
                 //"-logfile",
-                //"/tmp/RustDesk_xorg.log",
+                //"/tmp/Cevizdesk_xorg.log",
                 "-config",
-                "/etc/rustdesk/xorg.conf",
+                "/etc/cevizdesk/xorg.conf",
                 "-auth",
                 xauth,
                 display,
@@ -701,7 +701,7 @@ impl DesktopManager {
         gid: u32,
         envs: &HashMap<&str, String>,
     ) -> ResultType<Child> {
-        match Command::new("/etc/rustdesk/startwm.sh")
+        match Command::new("/etc/cevizdesk/startwm.sh")
             .envs(envs)
             .uid(uid)
             .gid(gid)
@@ -729,8 +729,8 @@ impl DesktopManager {
 }
 
 fn pam_get_service_name() -> &'static str {
-    if Path::new("/etc/pam.d/rustdesk").is_file() {
-        "rustdesk"
+    if Path::new("/etc/pam.d/cevizdesk").is_file() {
+        "cevizdesk"
     } else {
         "gdm"
     }
